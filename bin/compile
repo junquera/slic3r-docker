@@ -7,8 +7,9 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
+# TODO Ver si meter en carpeta propia
 BIN_PATH="$BUILD_DIR/bin"
-LIB_PATH="$BUILD_DIR/vendor/slic3r/lib"
+LIB_PATH="$BUILD_DIR/lib"
 TMP_PATH="$BUILD_DIR/tmp"
 mkdir -p $CACHE_DIR $BIN_PATH $LIB_PATH $TMP_PATH
 
@@ -30,8 +31,8 @@ echo "-----> Unpacking..."
 bzip2 -cd $SLIC3R_TAR | tar xvf - -C $TMP_PATH
 
 echo "-----> Moving binaries to the right place"
-mv $SLIC3R_PATH/slic3r $BIN_PATH/
-mv $SLIC3R_PATH/slic3r.pl $BIN_PATH/
+mv $SLIC3R_PATH/slic3r $BUILD_PATH/
+mv $SLIC3R_PATH/slic3r.pl $BULD_PATH/
 mv $SLIC3R_BINARIES/* $BIN_PATH/
 
 echo "-----> Moving libs to the right place"
@@ -41,5 +42,5 @@ echo "-----> Cleaning up"
 rm -rf $SLIC3R_PATH
 
 echo "-----> Installing slic3r resources"
-# Ver qué hacer con SLIC3R_RESOURCES="$SLIC3R_PATH/resources"
-export PATH=$PATH:$SLIC3R_BINARIES
+# TODO Ver qué hacer con SLIC3R_RESOURCES="$SLIC3R_PATH/resources"
+# TODO Ver ruta /app/.heroku/vendor/lib
