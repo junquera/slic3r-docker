@@ -42,3 +42,4 @@ rm -rf $SLIC3R_PATH
 
 echo "-----> Installing slic3r resources"
 # Ver qué hacer con SLIC3R_RESOURCES="$SLIC3R_PATH/resources"
+export PATH=$PATH:$SLIC3R_BINARIES

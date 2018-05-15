@@ -12,6 +12,13 @@ You can also do so for an existing app like so:
 heroku buildpacks:set https://github.com/some/buildpack.git -a myapp
 ```
 
+Also, add:
+
+```
+heroku buildpacks:add https://github.com/dscout/wkhtmltopdf-buildpack.git -a myapp
+```
+
+
 
 ## Buildpack API
 
