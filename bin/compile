@@ -13,9 +13,9 @@ LIB_PATH="$BUILD_DIR/lib"
 TMP_PATH="$BUILD_DIR/tmp"
 mkdir -p $CACHE_DIR $BIN_PATH $LIB_PATH $TMP_PATH
 
-SLIC3R_URL="https://github.com/prusa3d/Slic3r/releases/download/version_1.39.2/Slic3rPE-1.39.2.linux64-full-201805041532.tar.bz2"
+SLIC3R_URL="https://github.com/prusa3d/Slic3r/releases/download/version_1.41.0/Slic3rPE-1.41.0+linux64-full-201809010758.tar.bz2"
 SLIC3R_TAR="$CACHE_DIR/slic3r.tar.bz2"
-SLIC3R_PATH="$TMP_PATH/Slic3rPE-1.39.2+linux64-full-201805041532"
+SLIC3R_PATH="$TMP_PATH/Slic3rPE-1.41.0+linux64-full-201809010758"
 SLIC3R_BINARIES="$SLIC3R_PATH/bin"
 SLIC3R_LIBS="$SLIC3R_PATH/lib"
 SLIC3R_RESOURCES="$SLIC3R_PATH/resources"
