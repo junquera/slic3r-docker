@@ -20,5 +20,6 @@ ENV PATH="/slic3r:${PATH}"
 COPY  execute.sh /root/execute.sh
 RUN chmod +x /root/execute.sh
 
+RUN mkdir -d /files
 # Al hacer docker run se ejecuta esto
 ENTRYPOINT /root/execute.sh
