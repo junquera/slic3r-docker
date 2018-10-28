@@ -16,5 +16,4 @@
 #         echo "Error, $FPATH dir. does not exists or cant be accessed"
 # fi
 
-mkdir -p /files
-slic3r --merge $(ls $FPATH/$FNAME/*.stl) --output $FPATH/$FNAME/result.gcode
+slic3r --merge $(ls /files/$FNAME/*.stl) --output /files/$FNAME/result.gcode
