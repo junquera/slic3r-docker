@@ -3,23 +3,35 @@
 
 set -e
 
+# Directorio en el que terminará Slic3r
 BUILD_DIR=$1
+# Directorio de descarga
 CACHE_DIR=$2
 ENV_DIR=$3
 
 # TODO Ver si meter en carpeta propia
 BIN_PATH="$BUILD_DIR/bin"
 LIB_PATH="$BUILD_DIR/lib"
+RESOURCES_PATH="$BUILD_DIR/resources"
 TMP_PATH="$BUILD_DIR/tmp"
-mkdir -p $CACHE_DIR $BIN_PATH $LIB_PATH $TMP_PATH
 
+mkdir -p $CACHE_DIR $BIN_PATH $LIB_PATH $RESOURCES_PATH $TMP_PATH
+
+# Slic3r release url
 SLIC3R_URL="https://github.com/prusa3d/Slic3r/releases/download/version_1.41.0/Slic3rPE-1.41.0+linux64-full-201809010758.tar.bz2"
+# Directorio en el que se descarga Slic3r
 SLIC3R_TAR="$CACHE_DIR/slic3r.tar.bz2"
+# Directorio de desempaquetado
 SLIC3R_PATH="$TMP_PATH/Slic3rPE-1.41.0+linux64-full-201809010758"
+
+# Nombre de la carpeta con binarios
 SLIC3R_BINARIES="$SLIC3R_PATH/bin"
+# Nombre de la carpeta con librerías
 SLIC3R_LIBS="$SLIC3R_PATH/lib"
+# Nombre de la carpeta con resources
 SLIC3R_RESOURCES="$SLIC3R_PATH/resources"
 
+# Si ya se había descargado, no se descarga de nuevo
 if [ -f $SLIC3R_TAR ]; then
   echo "-----> Using slic3r tar from cache"
 else
@@ -27,20 +39,27 @@ else
   curl -L $SLIC3R_URL -o $SLIC3R_TAR
 fi
 
+# Desempaquetando
 echo "-----> Unpacking..."
 bzip2 -cd $SLIC3R_TAR | tar xvf - -C $TMP_PATH
 
+
 echo "-----> Moving binaries to the right place"
-mv $SLIC3R_PATH/slic3r $BUILD_PATH/
-mv $SLIC3R_PATH/slic3r.pl $BULD_PATH/
+# Moviendo "ejecutables"
+mv $SLIC3R_PATH/slic3r $BUILD_DIR/
+mv $SLIC3R_PATH/slic3r.pl $BUILD_DIR/
+# Moviendo el resto de binarios
 mv $SLIC3R_BINARIES/* $BIN_PATH/
 
 echo "-----> Moving libs to the right place"
+# Moviendo el resto de libs
 mv $SLIC3R_LIBS/* $LIB_PATH/
+
+echo "-----> Moving resources to the right place"
+# Moviendo el resto de resources
+mv $SLIC3R_RESOURCES/* $RESOURCES_PATH/
 
 echo "-----> Cleaning up"
 rm -rf $SLIC3R_PATH
 
-echo "-----> Installing slic3r resources"
-# TODO Ver qué hacer con SLIC3R_RESOURCES="$SLIC3R_PATH/resources"
 # TODO Ver ruta /app/.heroku/vendor/lib
