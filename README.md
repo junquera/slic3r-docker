@@ -1,25 +1,28 @@
-# Slic3r Buildpack
+# slic3r docker
 
-You can specify the Git URL of a third-party buildpack when creating a new app:
+## Instalación / Construcción
 
-```
-heroku create myapp --buildpack https://github.com/some/buildpack.git
-```
+Para construir el docker ejecutar:
 
-You can also do so for an existing app like so:
-
-```
-heroku buildpacks:set https://github.com/some/buildpack.git -a myapp
+```sh
+bash build.sh
 ```
 
-Also, add:
+Esto construirá el `Dockerfile`, instalando las dependencias de `slic3r` e instalándolo con nuestro instalador compatible con los buildpack de Heroku (`build/compile`). Finalmente, tenemos un `docker` con `slic3r` instalado en el path `/slic3r` (por ahora).
 
+## Ejecución
+
+> **#!** Una vez construido el docker, este paso podemos ejecutarlo desde cualquier sitio, el docker queda instalado en el sistema
+
+Para ejecutar nuestro `slic3r` *dockerizado* tenemos que sincronizar la carpeta en la que tenemos los archivos. Para poder separar los laminados por pedidos también indicaremos con qué path queremos trabajar en la instalación.
+
+```sh
+# bash run.sh $ORIGIN_ABSOLUTE_PATH $SUBPATH_NAME
+bash run.sh $(pwd)/files nombre_pedido
 ```
-heroku buildpacks:add https://github.com/dscout/wkhtmltopdf-buildpack.git -a myapp
-```
 
+En el ejemplo anterior, juntaría todos los archivos `.stl` de la carpeta `./files/nombre_pedido`, y generaría `./files/nombre_pedido/result.gcode`.
 
+## Test
 
-## Buildpack API
-
-[https://devcenter.heroku.com/articles/buildpack-api](https://devcenter.heroku.com/articles/buildpack-api)
+Se puede probar la ejecución con el archivo `test.py`
