@@ -14,18 +14,22 @@ Esto construirá el `Dockerfile`, instalando las dependencias de `slic3r` e inst
 
 > **#!** Una vez construido el docker, este paso podemos ejecutarlo desde cualquier sitio, el docker queda instalado en el sistema
 
-Para ejecutar nuestro `slic3r` *dockerizado* tenemos que sincronizar la carpeta en la que tenemos los archivos. Para poder separar los laminados por pedidos también indicaremos con qué path queremos trabajar en la instalación.
+Para ejecutar nuestro `slic3r` *dockerizado* tenemos que sincronizar la carpeta en la que tenemos los archivos. Para poder separar los laminados por pedidos indicaremos con qué path queremos trabajar en la instalación.
 
 ```sh
-# bash run.sh $ORIGIN_ABSOLUTE_PATH $SUBPATH_NAME
-bash run.sh $(pwd)/files nombre_pedido
+# bash run.sh $ORIGIN_ABSOLUTE_PATH
+bash run.sh $(pwd)/directorio_archivos
 ```
 
-En el ejemplo anterior, juntaría todos los archivos `.stl` de la carpeta `./files/nombre_pedido`, y generaría `./files/nombre_pedido/result.gcode`.
+En el ejemplo anterior, juntaría todos los archivos `.stl` de la carpeta `./directorio_archivos`, y generaría `./directorio_archivos/result.gcode`. Es **muy importante** no trabajar más de una vez en el mismo directorio (de hecho el script `test.py` genera uno nuevo cada vez con los *stls*) para evitar corrupción en los archivos generados.
 
 ## Test
 
-Se puede probar la ejecución con el archivo `test.py`
+Se puede probar la ejecución con el archivo `test.py`:
+
+```
+python3 test.py $ARCHIVOS_STL
+```
 
 
 ## TODO

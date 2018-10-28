@@ -1,7 +1,7 @@
 #!/bin/bash
+DOCKER=bitfab/slic3r #Name of the docker container
 
 DPATH=/files #Path on the docker container
-DOCKER=bitfab/slic3r #Name of the docker container
 
 # Absolute path to sync with docker
 LPATH=$1
