@@ -28,5 +28,5 @@ FNAME=$2
 # start the docker injecting the environment variables FTYPE and FPATH
 # and sharing a directory with the host
 
-docker run -v "$LPATH:$DPATH" -e FNAME=$FNAME $DOCKER
+docker run -v "$LPATH:$DPATH" $DOCKER
 exit 0
