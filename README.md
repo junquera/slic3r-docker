@@ -26,3 +26,22 @@ En el ejemplo anterior, juntaría todos los archivos `.stl` de la carpeta `./fil
 ## Test
 
 Se puede probar la ejecución con el archivo `test.py`
+
+
+## TODO
+
+La implementación final tiene que tener el siguiente formato, y ser accesible desde una API:
+
+```
+slic3r --merge /directorio/*.stl --load configuracion.ini --output file.gcode
+```
+
+Los siguientes pasos serían:
+
+- [ ] Añadir archivo `.ini`
+
+- [ ] Crear API
+
+- [ ] Separar API y Docker
+
+- [ ] Heroku + Docker con API
