@@ -6,9 +6,6 @@ DPATH=/files #Path on the docker container
 # Absolute path to sync with docker
 LPATH=$1
 
-# Nombre del pedido a procesar (carpeta dentro de LPATH)
-FNAME=$2
-
 # if [ $# -lt 3 ]; then
 # 	echo "Usage: $0 <format> <local path> <file name>"
 # 	exit -1

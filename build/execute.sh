@@ -16,4 +16,4 @@
 #         echo "Error, $FPATH dir. does not exists or cant be accessed"
 # fi
 
-slic3r --merge $(ls /files/*.stl) --output /files/result.gcode
+slic3r --merge $(ls /files/*.stl) --load $(ls /files/*.ini) --output /files/result.gcode
