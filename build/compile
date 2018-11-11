@@ -4,16 +4,18 @@
 set -e
 
 # Directorio en el que terminará Slic3r
-BUILD_DIR=$1
+INSTALL_DIR=$1
 # Directorio de descarga
-CACHE_DIR=$2
-ENV_DIR=$3
+# CACHE_DIR=$2
+# ENV_DIR=$3
+
+CACHE_DIR="/tmp"
 
 # TODO Ver si meter en carpeta propia
-BIN_PATH="$BUILD_DIR/bin"
-LIB_PATH="$BUILD_DIR/lib"
-RESOURCES_PATH="$BUILD_DIR/resources"
-TMP_PATH="$BUILD_DIR/tmp"
+BIN_PATH="$INSTALL_DIR/bin"
+LIB_PATH="$INSTALL_DIR/lib"
+RESOURCES_PATH="$INSTALL_DIR/resources"
+TMP_PATH="$INSTALL_DIR/tmp"
 
 mkdir -p $CACHE_DIR $BIN_PATH $LIB_PATH $RESOURCES_PATH $TMP_PATH
 
@@ -46,8 +48,8 @@ bzip2 -cd $SLIC3R_TAR | tar xvf - -C $TMP_PATH
 
 echo "-----> Moving binaries to the right place"
 # Moviendo "ejecutables"
-mv $SLIC3R_PATH/slic3r $BUILD_DIR/
-mv $SLIC3R_PATH/slic3r.pl $BUILD_DIR/
+mv $SLIC3R_PATH/slic3r $INSTALL_DIR/
+mv $SLIC3R_PATH/slic3r.pl $INSTALL_DIR/
 # Moviendo el resto de binarios
 mv $SLIC3R_BINARIES/* $BIN_PATH/
 
@@ -63,3 +65,6 @@ echo "-----> Cleaning up"
 rm -rf $SLIC3R_PATH
 
 # TODO Ver ruta /app/.heroku/vendor/lib
+
+# Una vez instalado, añadimos al PATH
+export PATH="${PATH}:$INSTALL_DIR"
